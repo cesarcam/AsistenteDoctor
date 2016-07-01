@@ -72,6 +72,10 @@ Item {
             width: 82
             height: 47
             text: "Agregar"
+            highlightColor: "#63c5da"
+            checkedColor: "#59788e"
+            pressColor: "#59788e"
+            color: "#3498db"
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.top: parent.top
@@ -83,6 +87,10 @@ Item {
             width: 82
             height: 47
             text: "Eliminar"
+            highlightColor: "#63c5da"
+            checkedColor: "#59788e"
+            pressColor: "#59788e"
+            color: "#3498db"
             anchors.top: parent.top
             anchors.topMargin: 10
             anchors.left: agregar2.right
@@ -94,6 +102,10 @@ Item {
             width: 82
             height: 47
             text: "Guardar"
+            highlightColor: "#63c5da"
+            checkedColor: "#59788e"
+            pressColor: "#59788e"
+            color: "#3498db"
             anchors.left: eliminar.right
             anchors.leftMargin: 10
             anchors.top: parent.top
@@ -109,6 +121,7 @@ Item {
             anchors.top: guardar.bottom
             anchors.topMargin: 10
             placeholderText: "Fecha de ingreso"
+
         }
 
         FlatInput {
@@ -120,6 +133,7 @@ Item {
             anchors.leftMargin: 10
             anchors.left: parent.left
             anchors.right: parent.right
+           validator: RegExpValidator{regExp: /^[a-zA-Z\s]{3,30}$/}
         }
 
         TextArea {

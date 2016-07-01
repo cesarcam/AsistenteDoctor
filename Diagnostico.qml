@@ -19,6 +19,10 @@ Item {
         x: 474
         y: 425
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: textArea1.bottom
         anchors.topMargin:10
     }

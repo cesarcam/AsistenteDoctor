@@ -22,6 +22,7 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 20
             placeholderText: "Temperatura"
+            validator: RegExpValidator{regExp: /^[0-9a-z\s]{5,30}$/}
         }
 
         FlatInput {
@@ -34,6 +35,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 10
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9a-z\s]{5,30}$/}
         }
 
         FlatInput {
@@ -45,6 +47,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9a-z\s]{5,30}$/}
         }
 
         FlatInput {
@@ -55,6 +58,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9a-z\s]{5,30}$/}
         }
     }
 
@@ -74,6 +78,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 10
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9a-z\s]{5,30}$/}
         }
 
         FlatInput {
@@ -89,6 +94,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 10
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,3}[.][0-9]{1,3}$/}
         }
 
         FlatInput {
@@ -100,6 +106,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,3}[.][0-9]{1,3}$/}
         }
 
         FlatInput {
@@ -110,6 +117,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,3}[.][0-9]{1,3}$/}
         }
         anchors.left: parent.left
         anchors.topMargin: 20
@@ -132,6 +140,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 10
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,3}[.][0-9]{1,3}$/}
         }
 
         FlatInput {
@@ -147,6 +156,7 @@ Item {
             anchors.leftMargin: 10
             echoMode: -8
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,4}[%]$/}
         }
 
         FlatInput {
@@ -158,6 +168,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[a-z0-9\s]{10}$/}
         }
 
         FlatInput {
@@ -168,6 +179,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 20
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[a-z0-9\s]{10}$/}
         }
         anchors.left: parent.left
         anchors.topMargin: 20
@@ -191,6 +203,7 @@ Item {
             anchors.topMargin: 20
             anchors.leftMargin: 10
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[0-9]{1,4}[%]$/}
         }
 
         FlatInput {
@@ -206,6 +219,7 @@ Item {
             anchors.leftMargin: 10
             echoMode: -8
             anchors.top: parent.top
+            validator: RegExpValidator{regExp: /^[a-z0-9\s]{10}$/}
         }
         anchors.left: parent.left
         anchors.topMargin: 20
@@ -218,6 +232,10 @@ Item {
         id: guardarDiagnostico
         x: 492
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: row4.bottom
         anchors.topMargin: 10
     }

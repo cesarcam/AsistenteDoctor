@@ -1,11 +1,12 @@
 import "../flatui"
+import QtQuick.Controls.Styles 1.4
 import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 Window {
     id: item1
-   width: 720
-   height: 420
+    width: 720
+    height: 420
     Rectangle{
         color: "#fff"
         anchors.fill: parent
@@ -64,6 +65,10 @@ Window {
         height: 35
         radius: 2
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.right: parent.right
         anchors.rightMargin: 6
         anchors.bottom: parent.bottom
@@ -96,6 +101,26 @@ Window {
             width: 350
         }
         model: traumaModel
+
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: 70
+                width: 200
+                color: "#3693d2"
+                Text {
+                    id: textItem
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: styleData.textAlignment
+                    anchors.leftMargin: 50
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: "white"
+                    renderType: Text.NativeRendering
+                }
+    }
+        }
     }
 
 

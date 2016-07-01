@@ -1,6 +1,7 @@
 import "../flatui"
 import QtQuick 2.0
 import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.0
 Window {
     id: window1
@@ -35,32 +36,51 @@ Window {
             anchors.topMargin: 50
             anchors.fill: parent
             TableViewColumn {
-                role: "padecimiento"
-                title:"Padecimiento"
+                role: "Nombre"
+                title:"Nombre"
                 width: 350
             }
             TableViewColumn {
-                role: "Medicamento"
-                title: "Medicamento"
+                role: "Componentes"
+                title: "Componentes"
                 width:350
             }
             model: padecimientoModel
+
+            style: TableViewStyle {
+                headerDelegate: Rectangle {
+                    height: 70
+                    width: 200
+                    color: "#3693d2"
+                    Text {
+                        id: textItem
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: styleData.textAlignment
+                        anchors.leftMargin: 50
+                        text: styleData.value
+                        elide: Text.ElideRight
+                        color: "white"
+                        renderType: Text.NativeRendering
+                    }
+        }
+            }
         }
 
 
         ListModel {
             id: padecimientoModel
             ListElement {
-                padecimiento: "gripe"
-                Medicamento: "Cloratadina, paracetamol"
+                Nombre: "Cloratadina, paracetamol"
+                Componentes: "sustrato de zinc, clorofelanina"
             }
             ListElement {
-                padecimiento: "fiebre"
-                Medicamento: "paracetamol"
+                Nombre: "Cloratadina, paracetamol"
+                Componentes: "sustrato de zinc, clorofelanina"
             }
             ListElement {
-                padecimiento: "cuerpo cortado"
-                Medicamento: "medicamento"
+                Nombre: "Cloratadina, paracetamol"
+                Componentes: "sustrato de zinc, clorofelanina"
             }
         }
         //////FIN TABLA INICIO ///////////////
@@ -77,6 +97,7 @@ Window {
         anchors.right: flatNumberNavButton1.left
         anchors.rightMargin: 10
         placeholderText: "Ingresa el nombre del medicamento"
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{3,30}$/}
     }
 
     FlatNumberNavButton {
@@ -88,8 +109,11 @@ Window {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        textColor: "#000000"
-        defaultColor: "#d6dbdf"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
+
     }
 
 
@@ -100,7 +124,6 @@ Window {
         text: qsTr("Ingresa Medicamento")
         font.bold: true
         font.pointSize: 20
-        anchors.right: flatNumberNavButton2.left
         anchors.rightMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10

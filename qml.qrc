@@ -94,6 +94,9 @@
         <file>img/check-mark.png</file>
         <file>img/enviarmensaje.png</file>
         <file>img/backPerfil.jpg</file>
+        <file>img/hex-loader.gif</file>
+        <file>img/gif2.gif</file>
+        <file>img/gif3.gif</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>fonts/fontawesome/fontawesome-webfont.ttf</file>
@@ -190,5 +193,9 @@
         <file>QMLChartData.js</file>
         <file>Chart.js</file>
         <file>crearMensaje.js</file>
+    </qresource>
+    <qresource prefix="/modelo">
+        <file>Modelo.js</file>
+        <file>CreacionTablasBase.js</file>
     </qresource>
 </RCC>

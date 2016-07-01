@@ -1,6 +1,7 @@
 import "../flatui"
 import QtQuick 2.0
 import QtQuick.Window 2.2
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 Item {
     id: notas
@@ -47,6 +48,26 @@ Item {
                     width: 250
                 }
                 model: modeloNota
+
+
+                style: TableViewStyle {
+                    headerDelegate: Rectangle {
+                        height: 70
+                        width: 200
+                        color: "#3693d2"
+                        Text {
+                            id: textItem
+                            anchors.fill: parent
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: styleData.textAlignment
+                            anchors.leftMargin: 50
+                            text: styleData.value
+                            elide: Text.ElideRight
+                            color: "white"
+                            renderType: Text.NativeRendering
+                        }
+            }
+            }
             }
             Text {
                 height: 28
@@ -68,6 +89,7 @@ Item {
                 anchors.rightMargin: 10
                 placeholderText: "Ingresa tus notas"
                 anchors.right: flatInfoButton2.left
+                validator: RegExpValidator{regExp: /^[a-zA-Z\s]{3,150}$/}
             }
 
             FlatInfoButton {
@@ -133,8 +155,27 @@ Item {
                     width: 250
                 }
                 model: modeloObservacion
-            }
 
+
+                style: TableViewStyle {
+                    headerDelegate: Rectangle {
+                        height: 70
+                        width: 200
+                        color: "#3693d2"
+                        Text {
+                            id: text1
+                            anchors.fill: parent
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: styleData.textAlignment
+                            anchors.leftMargin: 50
+                            text: styleData.value
+                            elide: Text.ElideRight
+                            color: "white"
+                            renderType: Text.NativeRendering
+                        }
+            }
+            }
+}
 
             FlatInfoButton {
                 id: flatInfoButton1
@@ -155,7 +196,6 @@ Item {
                 id: flatInput1
                 y: 425
                 height: 40
-                text: ""
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 10
                 anchors.left: parent.left
@@ -163,6 +203,7 @@ Item {
                 placeholderText: "Ingresa tus observaciones"
                 anchors.right: flatInfoButton1.left
                 anchors.rightMargin: 10
+                validator: RegExpValidator{regExp: /^[a-zA-Z\s]{3,150}$/}
             }
         }
 

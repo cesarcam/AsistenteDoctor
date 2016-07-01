@@ -24,6 +24,7 @@ Item {
             anchors.topMargin: 20
             anchors.left: parent.left
             anchors.leftMargin: 10
+            validator: RegExpValidator {regExp: /^[A-Za-z]{1,30}$/}
         }
 
         FlatInput {
@@ -35,6 +36,7 @@ Item {
             anchors.left: envia.right
             anchors.top: parent.top
             anchors.topMargin: 20
+            validator: RegExpValidator {regExp: /^[A-Za-z]{1,30}$/}
         }
 
         FlatInput {
@@ -47,6 +49,7 @@ Item {
             anchors.left: recibe.right
             anchors.top: parent.top
             anchors.topMargin: 20
+            validator: RegExpValidator {regExp: /^[A-Za-z]{1,100}$/}
         }
     }
 
@@ -87,6 +90,10 @@ Item {
         x: 503
         height: 35
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: grid1.bottom
         anchors.topMargin: 10
     }

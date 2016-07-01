@@ -1,4 +1,3 @@
-
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
@@ -153,13 +152,13 @@ Window{
                             id: nameLabel
                             width: parent.width
                             wrapMode: Text.Wrap
-                            text: modelData.name
+                            //text: modelData.name
                         }
                         Label {
                             id: timeLabel
                             width: parent.width
                             wrapMode: Text.Wrap
-                            text: modelData.startDate.toLocaleTimeString(calendar.locale, Locale.ShortFormat)
+                            //text: modelData.startDate.toLocaleTimeString(calendar.locale, Locale.ShortFormat)
                             color: "#aaa"
                         }
                     }

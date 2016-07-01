@@ -1,4 +1,5 @@
 import "../flatui"
+import QtQuick.Controls.Styles 1.4
 import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.0
@@ -18,8 +19,10 @@ Window {
         x: 474
         y: 443
         text: "Buscar"
-        textColor: "#000000"
-        textCheckedColor: "#000000"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.right: parent.right
@@ -36,6 +39,7 @@ Window {
         anchors.leftMargin: 10
         anchors.right: flatNumberNavButton1.left
         anchors.rightMargin: 10
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{3,30}$/}
     }
 
     Text {
@@ -55,7 +59,10 @@ Window {
         id: flatNumberNavButton2
         height: 47
         text: "Regresar"
-        textColor: "#000000"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.bottom: traumasTabla.top
@@ -109,6 +116,26 @@ Window {
             width:150
         }
         model: padecimientoModel
+
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: 70
+                width: 200
+                color: "#3693d2"
+                Text {
+                    id: textItem
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: styleData.textAlignment
+                    anchors.leftMargin: 50
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: "white"
+                    renderType: Text.NativeRendering
+                }
+    }
+        }
     }
 
     Row {

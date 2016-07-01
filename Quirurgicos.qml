@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import "../flatui"
@@ -39,6 +40,25 @@ Item{
             width: 350
         }
         model: quirurgicoModel
+
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: 70
+                width: 200
+                color: "#3693d2"
+                Text {
+                    id: textItem
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: styleData.textAlignment
+                    anchors.leftMargin: 50
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: "white"
+                    renderType: Text.NativeRendering
+                }
+    }
     }
 
     Row {
@@ -56,6 +76,7 @@ Item{
             id: descripcionTrauma1
             height: 35
             placeholderText: "ingresa la razon"
+            validator: RegExpValidator{regExp: /^[a-zA-Z\s]{3,30}$/}
         }
         FlatInput {
             id: fechaTrauma
@@ -82,6 +103,10 @@ Item{
             anchors.left: fechaTrauma.right
             anchors.leftMargin: 10
             text: "Guardar"
+            highlightColor: "#63c5da"
+            checkedColor: "#59788e"
+            pressColor: "#59788e"
+            color: "#3498db"
         }
     }
 
@@ -105,4 +130,5 @@ Item{
 
 
 
+}
 }

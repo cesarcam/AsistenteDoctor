@@ -159,6 +159,10 @@ Item {
         width: 216
         radius: 4
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         pointSize: 13
     }
 

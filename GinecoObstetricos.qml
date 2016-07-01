@@ -22,6 +22,7 @@ Item {
             anchors.rightMargin: 0
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
+            validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
         }
         FlatInput {
             id: menarquia
@@ -117,6 +118,7 @@ Item {
             anchors.top: relacionFecha.bottom
             anchors.topMargin: 20
             anchors.rightMargin: 10
+            validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
         }
     }
 
@@ -133,6 +135,10 @@ Item {
         id: guardarGinecologia
         x: 457
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: textArea1.bottom
         anchors.topMargin: 6
     }
@@ -144,6 +150,7 @@ Item {
         anchors.left: flatCheckBox2.right
         anchors.leftMargin: 90
         placeholderText: "Numero"
+        validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
     }
 
     FlatCheckBox {
@@ -153,6 +160,7 @@ Item {
         text: "Abortos"
         anchors.leftMargin: 20
         anchors.left: flatCheckBox1.right
+
     }
 
     FlatCheckBox {
@@ -173,6 +181,7 @@ Item {
         placeholderText: "Abdominales"
         anchors.leftMargin: 10
         anchors.left: eutocicos.right
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{1,20}$/}
     }
 
     FlatInput {
@@ -184,6 +193,7 @@ Item {
         placeholderText: "Eutocicos"
         anchors.leftMargin: 6
         anchors.left: partos.right
+        validator: RegExpValidator{regExp:/^[0-9]{1,2}$/}
     }
 
     FlatInput {
@@ -195,6 +205,7 @@ Item {
         placeholderText: "partos"
         anchors.leftMargin: 10
         anchors.left: fechaEmbarazo.right
+       validator: RegExpValidator{regExp:/^[0-9]{1,2}$/}
     }
 
     FlatInput {
@@ -310,6 +321,7 @@ Item {
         placeholderText: "prematuros"
         anchors.leftMargin: 10
         anchors.left: fechaEmbarazo.right
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{1,20}$/}
     }
 
     FlatInput {
@@ -321,6 +333,7 @@ Item {
         placeholderText: "Distocicos"
         anchors.leftMargin: 10
         anchors.left: partos.right
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{1,20}$/}
     }
 
     FlatInput {
@@ -332,6 +345,7 @@ Item {
         placeholderText: "Vaginales"
         anchors.leftMargin: 10
         anchors.left: eutocicos.right
+        validator: RegExpValidator{regExp: /^[a-zA-Z]{1,20}$/}
     }
 
     Text {
@@ -349,16 +363,5 @@ Item {
         text: qsTr("Complicaciones")
         font.pixelSize: 12
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -23,6 +23,7 @@ Item {
         anchors.top: textArea1.bottom
         anchors.topMargin: 20
         placeholderText: "valor 1"
+        validator: RegExpValidator {regExp: /^[0-9]{1,3}$/}
     }
 
     FlatInput {
@@ -34,6 +35,7 @@ Item {
         placeholderText: "valor 2"
         anchors.left: valor1.right
         anchors.leftMargin: 10
+        validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
     }
 
     FlatInput {
@@ -45,6 +47,7 @@ Item {
         placeholderText: "valor 3"
         anchors.left: valor2.right
         anchors.leftMargin: 10
+        validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
     }
 
     FlatInput {
@@ -57,6 +60,7 @@ Item {
         anchors.left: valor3.right
         placeholderText: "valor 4"
         anchors.leftMargin: 10
+        validator: RegExpValidator {regExp: /^[0-9]{1,2}$/}
     }
 
     FlatSuccessButton {
@@ -65,6 +69,10 @@ Item {
         height: 35
         radius: 0
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: textArea1.bottom
         anchors.topMargin: 20
         anchors.left: valor4.right

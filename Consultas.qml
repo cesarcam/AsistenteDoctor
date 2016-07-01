@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 import QtQuick.Controls.Styles 1.4
@@ -74,6 +74,7 @@ Item {
                             categoryItem.opacity = 1;
                         }
                         onClicked: {
+                            animacion1.visible = false
                             nestedModel.setProperty(index, "collapsed", !collapsed)
                             console.log(index);//indicara el index 2 y 3
                             if(index == 0){
@@ -128,6 +129,7 @@ Item {
                             anchors.fill: parent
                             hoverEnabled: true
                             onClicked:{
+                                animacion1.visible = false
                                 if(radioButton.checked){
                                     radioButton.checked = false
                                 }else{
@@ -189,4 +191,19 @@ Item {
             }
   }
 
+    AnimatedImage {
+        id: animacion1
+        y: 85
+        anchors.left: menuFichaClinica.right
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
+        anchors.leftMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        anchors.verticalCenter: menuFichaClinica.verticalCenter
+        fillMode: Image.PreserveAspectFit
+        source: "qrc:/img/img/hex-loader.gif"
+    }
 }

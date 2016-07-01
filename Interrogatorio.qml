@@ -44,6 +44,10 @@ Item {
         anchors.top: textArea1.bottom
         anchors.topMargin: 6
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
     }
 
     Flickable{

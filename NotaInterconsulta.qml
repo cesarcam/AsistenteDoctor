@@ -52,6 +52,10 @@ Item {
         id: guardarNota
         x: 474
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: textArea4.bottom
         anchors.topMargin: 10
     }

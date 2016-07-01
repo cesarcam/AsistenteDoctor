@@ -3,29 +3,12 @@ import QtQuick.Controls 1.3
 import QtQuick 2.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.0
-
+import QtQuick.Controls.Styles 1.4
 Window{
     id: item
     width: 700
     height: 600
 //    anchors.fill: parent
-
-    Rectangle {
-        id: rectangle1
-        color: "#FFF"
-        anchors.fill: parent
-    }
-
-    Flow {
-        id: row1
-        anchors.rightMargin: -2
-        anchors.bottomMargin: 0
-        anchors.leftMargin: 2
-        anchors.topMargin: 0
-        anchors.fill: parent
-        layoutDirection: Qt.RightToLeft
-
-    }
 
     MessageDialog {
         id: messageDialog
@@ -37,28 +20,37 @@ Window{
         }
     }
 
-    FlatNumberNavButton {
+    FlatButton {
         id: flatNumberNavButton1
         x: 476
         y: 240
+        height: 35
         text: "Agregar a lista"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
-        textColor: "#000000"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.right: parent.right
         anchors.rightMargin: 10
     }
-    FlatNumberNavButton {
+    FlatButton {
         id: flatNumberNavButton2
-        x: 476
+        x: 248
+        y: 550
         width: 216
-        height: 47
+        height: 35
         text: "Finalizar"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.right: flatNumberNavButton1.left
         anchors.rightMargin: 10
-        textColor: "#000000"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
+
 
     }
 
@@ -68,6 +60,8 @@ Window{
         color: "#70a9e3"
         radius: 0
         text: "Repeticion"
+        dropdownWidth: 100
+        dropdownHeight: 150
         anchors.leftMargin: 6
         anchors.topMargin: 10
         anchors.top: textInput1.bottom
@@ -88,6 +82,9 @@ Window{
         color: "#70a9e3"
         radius: 0
         text: "Cantidad"
+        opacity: 0.8
+        dropdownWidth: 100
+        dropdownHeight: 150
         anchors.leftMargin: 20
         anchors.topMargin: 10
         anchors.top: textInput1.bottom
@@ -106,7 +103,7 @@ Window{
         color: "#70a9e3"
         radius: 0
         text: "Presentacion"
-        dropdownHeight: 100
+        dropdownHeight: 150
         dropdownWidth: 100
         anchors.leftMargin: 16
         anchors.topMargin: 10
@@ -129,7 +126,7 @@ Window{
         anchors.left: repeticion.right
         anchors.leftMargin: 10
         dropdownWidth: 100
-        dropdownHeight: 100
+        dropdownHeight: 150
         anchors.rightMargin: 10
         anchors.topMargin: 10
         anchors.top: textInput1.bottom
@@ -149,6 +146,7 @@ Window{
         color: "#70a9e3"
         radius: 0
         text: "Medida"
+        dropdownWidth: 100
         anchors.leftMargin: 8
         anchors.topMargin: 10
         anchors.top: textInput1.bottom
@@ -162,6 +160,7 @@ Window{
         }
     }
 
+
     Text {
         id: text1
         x: 230
@@ -171,97 +170,112 @@ Window{
         font.pixelSize: 25
     }
             ///Inicia la lista///
-    ListView {
-        id: contenedor
-        x: 50
-        width: 100
-        anchors.bottom: flatNumberNavButton2.top
-        anchors.bottomMargin: 10
-        anchors.top: presentacion.bottom
-        anchors.topMargin: 10
-        anchors.left: parent.left
+    Flow{
+        width: parent.width
         anchors.leftMargin: 10
-        anchors.right: parent.right
         anchors.rightMargin: 10
-        model: ListModel {
-            id : lista
+        anchors.bottom:flatNumberNavButton1.top
+        anchors.top: cantidad.bottom
+        TableView {
+            id: traumasTabla
+            anchors.fill:parent
+            TableViewColumn {
+                role: "Presentacion"
+                title:"Presentacion"
+                width: 150
+            }
+            TableViewColumn {
+                role: "Cantidad"
+                title: "Cantidad"
+                width:100
+            }
+            TableViewColumn {
+                role: "Medida"
+                title: "Medida"
+                width:100
+            }
+            TableViewColumn {
+                role: "Repeticion"
+                title: "Repeticion"
+                width:100
+            }
+            TableViewColumn {
+                role: "Duracion"
+                title: "Duracion"
+                width:150
+            }
+            model: padecimientoModel
+
+            style: TableViewStyle {
+                headerDelegate: Rectangle {
+                    height: 70
+                    width: 200
+                    color: "#3693d2"
+                    Text {
+                        id: textItem
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: styleData.textAlignment
+                        anchors.leftMargin: 50
+                        text: styleData.value
+                        elide: Text.ElideRight
+                        color: "white"
+                        renderType: Text.NativeRendering
+                    }
+        }
+            }
         }
 
-        delegate: Item {
-            x: 5
-            width: 80
-            height: 40
-            Row {
-                id: row2
-                spacing: 10
-                Button{
-                    Image {
-                        id: eliminar
-                        width :35
-                        height:35
-                        source:"qrc:/img/img/delete.png"
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 10
 
-                        Rectangle {
-                            width: 40
-                            height: 40
-                            color: colorCode
-                        }
-
-                        Text {
-                            text: name
-                            font.bold: true
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-
-                    }
-                }
+        ListModel {
+            id: padecimientoModel
+            ListElement {
+                Presentacion: "Mililitros"
+                Cantidad: "1"
+                Medida: "2 ml"
+                Repeticion:"8 horas"
+                Duracion:"5 dias"
             }
-                ///Finaliza la lista///
-                MouseArea{
-                    id: mouseArea1
-                    x: 285
-                    y: 540
-                    width: 89
-                    height: 80
-                    onClicked:
-                    {
-                        if(Validacion.validacion(textInput1.text) == true)
-                        {
-                            lista.append({"name": textInput1.text})
-                            Validacion.addTask(source, textInput1.text);
-                            textInput1.text = '';
-                        }else
-                        {
-                            messageDialog.visible = true
-                        }
+            ListElement {
+                Presentacion: "Mililitros"
+                Cantidad: "1"
+                Medida: "2 ml"
+                Repeticion:"8 horas"
+                Duracion:"5 dias"
+            }
+            ListElement {
+                Presentacion: "Mililitros"
+                Cantidad: "1"
+                Medida: "2 ml"
+                Repeticion:"8 horas"
+                Duracion:"5 dias"
+            }
+            ListElement {
+                presentacion: "Mililitros"
+                Cantidad: "1"
+                Medida: "2 ml"
+                Repeticion:"8 horas"
+                Duracion:"5 dias"
+            }
 
-                    }
-                }
         }
     }
 
         FlatInput{
         id: textInput1
-        text: qsTr("Ingrese El Medicamento")
-        //inputMask: "Ingrese El Medicamento; "
+        placeholderText: "Ingrese el medicamento"
         font.bold: false
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
         anchors.rightMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
-        anchors.bottom: flatDropdown2.top
         anchors.bottomMargin: 10
         anchors.top: text1.bottom
         anchors.topMargin: 8
         font.pixelSize: 25
-        onFocusChanged:
-        {
-            textInput1.text = '';
-        }
+        validator: RegExpValidator{regExp: /^[a-zA-Z\s]{3,30}$/}
+
 
     }
 }

@@ -1,17 +1,64 @@
 import "vistas"
 import "flatui"
 import QtQuick 2.3
+import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
 import QtQuick.Extras 1.4
 import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 import QtQuick.Extras 1.0
-import QtQuick.Controls 1.3
-import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Styles.Flat 1.0
 import QtQuick.Dialogs 1.2
+import QtQml.Models 2.2
 import "componentesLaterales"
+import "../modelo/Modelo.js" as DB
+import "../modelo/CreacionTablasBase.js" as Tablas1
+import QtQuick.LocalStorage 2.0
+
 Window {
+
+    Component.onCompleted: {
+        Tablas1.crear()
+    }
+    property string id_paciente1: ""
+    property string foto1: ""
+    property string fechaNacimiento1: ""
+    property string apellido123: ""
+    property string apellido12: ""
+    property string nombre123 : ""
+    property string rfc1: ""
+    property string curp1: ""
+    property string ocupacion1: ""
+    property string estadocivil1: ""
+    property string edad1: ""
+    property string estatura1: ""
+    property string peso1: ""
+    property string telefonoParticula1: ""
+    property string telefonoOficina1: ""
+    property string celular1: ""
+    property string religion1: ""
+    property string referenciado1: ""
+    property string email1: ""
+    property string calleNumero1: ""
+    property string pais1: ""
+    property string codigoPostal1:""
+    property string estadoRegion1: ""
+    property string colonia1: ""
+    property string ciudad1: ""
+    property string sexo1: ""
+
+    property string aseguradora1: ""
+    property string poliza1: ""
+    property string nombre1: ""
+    property string fechaExpedicion1: ""
+    property string fechaExpiracion1: ""
+    property string familiar12: ""
+    property string familiar13: ""
+    property string telefonoFam1: ""
+    property string telefonoFam2: ""
+    property string observacion1: ""
+
     //flags: Qt.FramelessWindowHint
     id: ventanaPrincipal
     visible: true
@@ -25,7 +72,7 @@ Window {
     ///////////////////////////////////////////////////////////|
     property real   scaleFactor: Screen.pixelDensity / 5.0
     property int    intScaleFactor: Math.max(1, scaleFactor)
-    property int    anchoPantalla: 1290
+    property int    anchoPantalla: 1390
     property int    altoPantalla: 800
     property int    duration: 3000
     property bool   menu_shown: false
@@ -58,15 +105,13 @@ Window {
         ExpedienteClinico{id:expediente}
         Agenda{id:agenda}
         ListaDeEnfermedades{id:listaEnfermedades}
-        CalculadoraMedica{id:calculadora}
+        //CalculadoraMedica{id:calculadora}
         Estadisticas{id:estadisticas}
         AsistenteDeRecetas{id:asistenteRecetas}
         ListaGeneralDeEstudios{id:listaEstudios}
         Medicamentos{id:medicamento}
         ConsultarHistorialDelPaciente{id:historialPaciente}
-        ManualdeAyuda{id:manual}
-
-
+        //ManualdeAyuda{id:manual}
     }
     Row
     {
@@ -193,7 +238,7 @@ Window {
                                 menuPrincipal.currentIndex = index
                                 if(index == 0){
                                     expediente.visible = true
-                                    loaderContenedorGeneral.visible = false
+                                    loaderContenedorGeneral.source = ""
                                 }
                             }
                         }
@@ -293,16 +338,24 @@ Window {
                                     }else if(seccion == "Asistente orden de analisis"){
                                         listaEstudios.visible = true
                                    }else if(seccion == "Mensajes"){
+
+
+                                        ///////////////////////////////
                                         expediente.visible = false
+
                                         loaderContenedorGeneral.source = "qrc:/componentesLaterales/ChatPacientes.qml"
                                     }else if(seccion == "Consultar historial del paciente"){
                                         historialPaciente.visible = true
                                     }else if(seccion == "Listado de pacientes"){
+
+
+                                        ///////////////////////////////
                                         expediente.visible = false
+
+
                                         loaderContenedorGeneral.source ="qrc:/componentesLaterales/ListaDePacientes.qml"
                                     }else if(seccion =="Consultar manual de ayuda"){
                                         manual.visible = true
-
                                     }
 
 
@@ -385,12 +438,13 @@ Window {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
+
         FlatTopNavBar{
             id: barraContenedorBusqueda
             anchors.left: parent.left
             anchors.right: parent.right
-            FlatSearchInput {
-                id: barraBusqueda
+            FlatInput {
+                id: consul
                 anchors.right: parent.right
                 anchors.rightMargin: 172
                 anchors.top: parent.top
@@ -399,14 +453,118 @@ Window {
                 anchors.bottomMargin: 8
                 anchors.left: parent.left
                 anchors.leftMargin:hamburger.width+20
-                border.color: "#f6f6f6"
-                inactiveColor: "#eaeeef"
-                activeColor: "#c4b1b1"
-                selectedTextColor: "#c4b1b1"
-                defaultColor: "#eaeeef"
+                placeholderText: "Ingresa el nombre del paciente"
+                onAccepted: {
+                    model.clear()
+                    DB.consultar(model,consul.text)
+                    lista.visible = true
+                }
             }
         }
     }
+//inicia la ventana que muestra la lista de los pacientes registrados//
+    Window
+    {
+        id:lista
+        width: 400
+        height: 400
+        ListView
+        {
+            id:lista_contactos
+            anchors.fill: parent
+            model: model
+            delegate: categoryDelegat
+            highlight: Rectangle
+            {
+            color: "lightsteelblue"; radius: 5
+        }
+        }
+
+        ListModel
+        {
+            id: model
+            ListElement
+            {
+                fotoPa:""
+                name:""
+                apellido:""
+                apellidoMa:""
+                rfcPa:""
+                curpPa:""
+                religionPa:""
+                referenciadoPa: ""
+                ocupacionPa:""
+                estado_civilPa:""
+                edadPa:1
+                estaturaPa:1
+                pesoPa:1
+                telParticularPa:1
+                telOficinaPa:1
+                celularPa:1
+                ciudadPa:""
+                cpPa: 1
+                emailPa:""
+                estadoRegionPa: ""
+                coloniaPa: ""
+                calleNumeroPa: ""
+                paisPa:""
+                fechaPa:""
+                sexoPa:""
+
+                //seguro_Medico//
+                institucion_aseguradoraPa:""
+                numero_seguroPa:1
+                nombrePa:""
+                fecha_expedicionPa:1
+                fecha_expiracionPa:1
+                nombre_familiar1Pa:""
+                nombre_familiar2Pa:""
+                telefono1Pa:1
+                telefono2Pa:1
+                observaPa:""
+                //finaliza seguro_medico//
+
+            }
+        }
+
+        Component {
+            id: categoryDelegat
+            Row {
+                width: parent.width
+                Rectangle {
+                    id: categoryItem
+                    color: "#f1f1f1"; radius: 5
+                    height: 50
+                    width: parent.width
+                    Text {
+                        x: 15
+                        font.pixelSize: 18
+                        text: name + " " + apellido + " " + apellidoMa
+                    }
+                    MouseArea {
+
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: {
+                            categoryItem.opacity = 0.6;
+                        }
+                        onExited: {
+                            categoryItem.opacity = 1;
+                        }
+                        onClicked:
+                        {
+                            lista_contactos.currentIndex = index
+
+                        }
+                    }
+                focus:true
+                clip: true
+                }
+            }
+        }
+    }
+//finaliza la ventana de la consulta de los pacientes//
+
     FlatDropdown {
         id: flatDropdown1
         y:8

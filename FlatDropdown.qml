@@ -106,7 +106,6 @@ FlatButton {
                     id: separation;
                     color: Qt.rgba(.2, .2, .2, .3)
                     height: 2;
-                    visible: separator;
                     anchors {
                         top: parent.top;
                         left: parent.left;

@@ -3,7 +3,7 @@ import QtQuick.Controls 1.3
 import "../flatui"
 Item{
     id:alergias
-    anchors.fill: parnet
+    anchors.fill: parent
     height: 800
     TextArea {
         id: textArea1
@@ -89,6 +89,11 @@ Item{
         x: 424
         y: 737
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
+
         padding: 93
     }
 

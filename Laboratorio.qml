@@ -34,6 +34,10 @@ Item {
         width: 180
         radius: 0
         text: "Agregar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.left: flatSearchInput1.right
         anchors.leftMargin: 11
     }
@@ -42,6 +46,10 @@ Item {
         id: flatSuccessButton1
         x: 474
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.top: textArea1.bottom
         anchors.topMargin: 10
     }

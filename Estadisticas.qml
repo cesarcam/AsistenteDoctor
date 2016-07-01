@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.0
 import QtQuick.Controls 1.4
 Window {
@@ -30,6 +31,24 @@ Window {
             title: "Ingresos"
             EstadisticaPaciente{}
         }
+
+        style: TabViewStyle {
+               frameOverlap: 1
+               tab: Rectangle {
+                   color: styleData.selected ? "steelblue" :"lightsteelblue"
+                   border.color:  "steelblue"
+                   implicitWidth: Math.max(text.width + 4, 300)
+                   implicitHeight: 50
+                   radius: 2
+                   Text {
+                       id: text
+                       anchors.centerIn: parent
+                       text: styleData.title
+                       color: styleData.selected ? "white" : "black"
+                   }
+               }
+               frame: Rectangle { color: "white" }
+           }
     }
 
 }

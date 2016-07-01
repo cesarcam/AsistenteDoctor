@@ -17,7 +17,7 @@ ScrollView {
    anchors.fill: parent
    WebView {
        id: webview
-       url: "http://linx4.dscorp.com.mx:8089/calculadora/manual/"
+       url: "http://linx4.dscorp.com.mx:8089/calculadora/manual/index.php"
        anchors.fill: parent
        onNavigationRequested: {
            // detect URL scheme prefix, most likely an external link

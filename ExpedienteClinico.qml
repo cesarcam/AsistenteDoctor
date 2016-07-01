@@ -1,10 +1,21 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.4
+import QtQuick.LocalStorage 2.0
+import "../modelo/Modelo.js" as DB
+import "../modelo/CreacionTablasBase.js" as Tablas1
+
 TabView{
+    Component.onCompleted: {
+        Tablas1.crear()
+    }
+
+    property string id_paciente1: ""
+
     id:expedienteClinico
     anchors.fill: parent
     transformOrigin: Item.Center
+
     Tab{
         title: "Datos Generales"
         DatosGenerales{}
@@ -15,13 +26,21 @@ TabView{
     }
     Tab{
         title: "Seguro Medico"
-        SeguroMedico{}
+        anchors.fill: parent
+        SeguroMedico{
+            Connections
+            {
+                onClicked:
+                {
+                    console.log("ya!");
+                }
+            }
+        }
     }
     Tab{
         title: "Consulta"
         Consultas{}
      }
-
     Tab{
         title: "Notas"
         Notas{}

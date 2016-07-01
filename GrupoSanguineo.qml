@@ -79,11 +79,12 @@ Item{
             property alias model : subItemRepeater.model
             width: 200
             Repeater {
+
                 id: subItemRepeater
                 delegate: Rectangle {
                     color: "#fff"
                     height: 40
-                    width: 500
+                    width: 750
                     FlatCheckBox{
                         id:checkButton
                         text: itemName
@@ -186,6 +187,10 @@ Item{
         id: flatSuccessButton1
         x: 424
         text: "Guardar"
+        highlightColor: "#63c5da"
+        checkedColor: "#59788e"
+        pressColor: "#59788e"
+        color: "#3498db"
         anchors.horizontalCenterOffset: 200
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textArea3.bottom

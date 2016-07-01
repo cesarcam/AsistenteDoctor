@@ -1,8 +1,8 @@
-import QtQuick 2.0
+import "../flatui"
+import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 import QtQuick.Controls.Styles 1.4
-import "../flatui"
 Item {
     id: item1
     property var section;
@@ -41,7 +41,7 @@ Item {
                     ListElement { itemName: "Inmunizaciones" }
                 ]
             }
-           ListElement {
+            ListElement {
                 categoryName: "No patologicos"
                 collapsed: true
                 subItems: [
@@ -49,10 +49,10 @@ Item {
                     ListElement { itemName: "Alergias";separator:true }
                 ]
             }
-           ListElement {
+            ListElement {
                 categoryName: "Heredofamiliares"
             }
-           ListElement {
+            ListElement {
                 categoryName: "Gineco Obstetricos"
             }
         }
@@ -72,6 +72,8 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     MouseArea {
+
+
                         anchors.fill: parent
                         hoverEnabled: true
                         onEntered: {
@@ -83,16 +85,19 @@ Item {
                         onClicked: {
                             nestedModel.setProperty(index, "collapsed", !collapsed)
                             console.log(index);//indicara el index 2 y 3
+                            categoryItem.color = "#f1f1f1"
                             if(index == 2){
-                               console.log('Destrunyendo...');
-                               console.log('cargando..');
-                               contenidoFicha.source ="/componentes/Heredofamiliares.qml"
-                           }
-                           else if(index == 3){
-                               console.log('Destrunyendo...');
-                               console.log('cargando..');
-                               contenidoFicha.source ="/componentes/GinecoObstetricos.qml"
-                           }
+                                animacion.visible = false
+                                console.log('Destrunyendo...');
+                                console.log('cargando..');
+                                contenidoFicha.source ="/componentes/Heredofamiliares.qml"
+                            }
+                            else if(index == 3){
+                                animacion.visible = false
+                                console.log('Destrunyendo...');
+                                console.log('cargando..');
+                                contenidoFicha.source ="/componentes/GinecoObstetricos.qml"
+                            }
                         }
                     }
 
@@ -134,63 +139,80 @@ Item {
                             x: 30
                             text: itemName
 
-                          MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked:{
-                                if(radioButton.checked){
-                                    radioButton.checked = false
-                                }else{
-                                    radioButton.checked = true
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked:{
+                                    animacion.visible = false
+                                    if(radioButton.checked){
+                                        radioButton.checked = false
+                                    }else{
+                                        radioButton.checked = true
+                                    }
+                                    lista_fichaClinica.currentIndex = index
+                                    section =  subItemRepeater.model.get(lista_fichaClinica.currentIndex).itemName//sacar el nombre del indice que se selecciona
+                                    if(section == 'Padecimientos' && radioButton.checked){
+                                        console.log('cargando..');
+                                        contenidoFicha.source ="/componentes/Padecimientos.qml"
+                                    }else if(section == 'Traumas' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/Traumas.qml"
+                                    }
+                                    else if(section == 'Hospitalizaciones' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/Hospitalizaciones.qml"
+                                    }
+                                    else if(section == 'Quirurgicos' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/Quirurgicos.qml"
+                                    }
+                                    else if(section == 'Inmunizaciones' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/Inmunizaciones.qml"
+                                    }
+                                    else if(section == 'Grupo sanguineo' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/GrupoSanguineo.qml"
+                                    }
+                                    else if(section == 'Alergias' && radioButton.checked){
+                                        console.log('Destrunyendo...');
+                                        console.log('cargando..');
+                                        contenidoFicha.source = "/componentes/Alergias.qml"
+                                    }
                                 }
-                                lista_fichaClinica.currentIndex = index
-                                section =  subItemRepeater.model.get(lista_fichaClinica.currentIndex).itemName//sacar el nombre del indice que se selecciona
-                                if(section == 'Padecimientos' && radioButton.checked){
-                                    console.log('cargando..');
-                                    contenidoFicha.source ="/componentes/Padecimientos.qml"
-                                }else if(section == 'Traumas' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/Traumas.qml"
+                                onEntered: {
+                                    parent.opacity = 0.9;
                                 }
-                                else if(section == 'Hospitalizaciones' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/Hospitalizaciones.qml"
+                                onExited: {
+                                    parent.opacity = 1;
                                 }
-                                else if(section == 'Quirurgicos' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/Quirurgicos.qml"
-                                }
-                                else if(section == 'Inmunizaciones' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/Inmunizaciones.qml"
-                                }
-                                else if(section == 'Grupo sanguineo' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/GrupoSanguineo.qml"
-                                }
-                                else if(section == 'Alergias' && radioButton.checked){
-                                    console.log('Destrunyendo...');
-                                    console.log('cargando..');
-                                    contenidoFicha.source = "/componentes/Alergias.qml"
-                                }
-                             }
-                          onEntered: {
-                            parent.opacity = 0.9;
-                          }
-                          onExited: {
-                            parent.opacity = 1;
-                          }
-                        }//<-- fin de mouse area -->
+                            }//<-- fin de mouse area -->
+                        }
                     }
-                  }
                 }
-              }
             }
-  }
+        }
+    }
 
- }
+    AnimatedImage {
+        id: animacion
+        y: 85
+        anchors.left: menuFichaClinica.right
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 0
+        anchors.leftMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        anchors.verticalCenter: menuFichaClinica.verticalCenter
+        fillMode: Image.PreserveAspectFit
+        source: "qrc:/img/img/hex-loader.gif"
+    }
+
+}
