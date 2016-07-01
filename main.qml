@@ -14,6 +14,7 @@ import QtQml.Models 2.2
 import "componentesLaterales"
 import "../modelo/Modelo.js" as DB
 import "../modelo/CreacionTablasBase.js" as Tablas1
+import "../modelo/modeloTablas.js" as Tablas12
 import QtQuick.LocalStorage 2.0
 
 Window {
@@ -456,7 +457,7 @@ Window {
                 placeholderText: "Ingresa el nombre del paciente"
                 onAccepted: {
                     model.clear()
-                    DB.consultar(model,consul.text)
+                    Tablas12.consultarList('EXPEDIENTE_PACIENTE',model,consul.text)
                     lista.visible = true
                 }
             }

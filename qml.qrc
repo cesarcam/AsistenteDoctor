@@ -197,5 +197,6 @@
     <qresource prefix="/modelo">
         <file>Modelo.js</file>
         <file>CreacionTablasBase.js</file>
+        <file>modeloTablas.js</file>
     </qresource>
 </RCC>

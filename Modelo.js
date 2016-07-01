@@ -117,5 +117,15 @@ db.transaction(function(tx){
     console.log("Terminado ...")
 })
 }
+
+function longitud(x){
+    var cont = 0
+    for(var i in x){
+        cont++
+    }
+    return cont;
+}
+
+
 ///////////////////////////////////////Fin borrar/////////////////////////////////////////////////////////////////////////////////////////////
 

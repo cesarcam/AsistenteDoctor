@@ -107,7 +107,7 @@ Item {
                     source.grabToImage(function(result)
                     {
                         //saveUrl = "C:/Users/Ces/Pictures/DoctorFlat/img/"+Math.ceil(Math.random() * 100000)+"[Nombre].png";
-                        saveUrl = "home/cesar/Descargas/DoctorFlat/img/"+Math.ceil(Math.random() * 100000)+"[Nombre].png";
+                        saveUrl = "home/android-fgbt18991/Descargas/DoctorFlat/img/"+Math.ceil(Math.random() * 100000)+"[Nombre].png";
                         result.saveToFile(saveUrl);
                     },Qt.size(200,200));
                 }
