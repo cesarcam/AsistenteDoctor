@@ -68,7 +68,8 @@ Item {
         height: 200
         width: 280
         onAccepted:{
-            fechaNacimiento.text = calendar.selectedDate.toLocaleDateString()
+            fechaNacimiento.text =Qt.formatDate( calendar.selectedDate,"d/MM/yyyy")
+
         }
         Calendar {
             id: calendar
@@ -464,31 +465,32 @@ Button {
     text: qsTr("guardar")
     onClicked:
     {
-        //arrDatos["foto"]= source.text;
-        arrDatos["3"]= 'apellido_paterno,'+ apellido_paterno.text;
-        arrDatos["4"]= 'apellido_materno,'+ apellido_materno.text;
-        arrDatos["5"]= 'nombre,'+ nombre.text
-        arrDatos["6"]= 'rfc,'+rfc.text;
-        arrDatos["7"]= 'curp,'+ curp.text;
-        arrDatos["8"]= 'fechaNacimiento,'+ fechaNacimiento.text;
-        arrDatos["9"]= 'edad,'+ parseInt(edad.text)
-        arrDatos["10"]='estatura,'+ parseFloat(estatura.text)
-        arrDatos["11"]='peso,'+ parseFloat(peso.text);
-        arrDatos["12"]='sexo,'+ sex.get(sexo.currentIndex).text;
-        arrDatos["13"]='religion,'+ religionPaciente.text;
-        arrDatos["14"]='ocupacion,'+ ocupacion.text;
-        arrDatos["15"]='estado_civil,'+ estadoCivil.text;
-        arrDatos["16"]='referenciado,'+ referenciado.text;
-        arrDatos["17"]='telefono_particular,'+ parseInt(telParticular.text);
-        arrDatos["18"]='telefono_oficina,'+ parseInt(telOficina.text);
-        arrDatos["19"]='celular,'+ parseInt(celular.text);
-        arrDatos["20"]='email,'+ email.text;
-        arrDatos["21"]='calle_y_numero,'+ calleNumero.text;
-        arrDatos["22"]='colonia,'+ colonia.text;
-        arrDatos["23"]='ciudad,'+ ciudad.text
-        arrDatos["24"]='estado,'+ estadoRegion.text;
-        arrDatos["25"]='cp,'+ parseInt(codigoPostal.text);
-        arrDatos["26"]='pais,'+nacionalidad.text;
+//revisar por que no pasa el valor de saveurl
+        arrDatos["2"]= loadUrl
+        arrDatos["3"]= apellido_paterno.text;
+        arrDatos["4"]= apellido_materno.text;
+        arrDatos["5"]= nombre.text
+        arrDatos["6"]= rfc.text;
+        arrDatos["7"]= curp.text;
+        arrDatos["8"]= fechaNacimiento.text;
+        arrDatos["9"]= parseInt(edad.text)
+        arrDatos["10"]=parseFloat(estatura.text)
+        arrDatos["11"]=parseFloat(peso.text);
+        arrDatos["12"]=sex.get(sexo.currentIndex).text;
+        arrDatos["13"]=religionPaciente.text;
+        arrDatos["14"]=ocupacion.text;
+        arrDatos["15"]=estadoCivil.text;
+        arrDatos["16"]=referenciado.text;
+        arrDatos["17"]=parseInt(telParticular.text);
+        arrDatos["18"]=parseInt(telOficina.text);
+        arrDatos["19"]=parseInt(celular.text);
+        arrDatos["20"]=email.text;
+        arrDatos["21"]=calleNumero.text;
+        arrDatos["22"]=colonia.text;
+        arrDatos["23"]=ciudad.text
+        arrDatos["24"]=estadoRegion.text;
+        arrDatos["25"]=parseInt(codigoPostal.text);
+        arrDatos["26"]=nacionalidad.text;
         DB.insertar('EXPEDIENTE_PACIENTE',arrDatos)
     }
 }

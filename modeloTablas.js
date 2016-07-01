@@ -14,7 +14,6 @@ function consultarGeneral(tabla){
 
 
 function consultarList(tabla,modelo,nombre){
-    var r = ""
     openDB()
     db.transaction( function(tx) {
           var rs = tx.executeSql("SELECT * FROM "+tabla+" WHERE nombre like '%"+nombre+"%'");

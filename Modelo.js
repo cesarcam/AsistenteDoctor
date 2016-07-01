@@ -1,25 +1,20 @@
 var db;
 
 function openDB(){db = LocalStorage.openDatabaseSync("datos1", "1.0", "descripcion de la base de datos", 100000);}
-
-    openDB();
-
     function insertar(tabla,arr){ //Funcion insertar
-        console.log("INSERTANDO ...")
-
-
-
+        var insert = "";
         openDB();
-
         db.transaction(function(tx){
             var r = tx.executeSql('SELECT name, sql FROM sqlite_master WHERE type="table" AND name = "'+tabla+'";', [], function (tx, results) { });
-        var b = r.rows.item(0).sql.replace(/^[^\(]+\(([^\)]+)\)/g, '$1').split(',')
+        var b = r.rows.item(0).sql.replace(/^[^\(]+\(([^\)]+)\)/g, '$1').split(', ')
+            console.log("=========RECORRER EL ARREGLO DEL ESQUEMA DE LA BD===========")
             for(var i = 0;i<b.length;i++){
-                b[i] = b[i].match(/^ \S*/g);  //busca una cadena despues de los espacios
+                b[i] = b[i].match(/^\S*/g);  //busca una cadena despues de los espacios
                 b[i] = b[i][0].trim()  //remueve espacios en blanco de ambos lados de la cadena
                 console.log(b[i])    //imprimir arreglo.
             }
-            var insert ='insert into '+tabla+'(';
+            console.log("=========FIN DEL ARREGLO DEL ESQUEMA DE LA BD===========")
+            insert ='insert into '+tabla+'(';
             for(var i = 1; i<b.length;i++){
                 if(i+1 == b.length)  //if para quitar la coma de la ultima posicion
                 {
@@ -32,18 +27,22 @@ function openDB(){db = LocalStorage.openDatabaseSync("datos1", "1.0", "descripci
             var cont = 0;
             for(var x in arr){
                 cont++;
-                if(cont == longitud(arr)){
-                    insert+=arr[x]
-                }else{
-                    insert+=arr[x]+",";
-                }
+                if(!arr[x] == ""){
+               if(cont == longitud(arr)){
+                   insert+="'"+arr[x]+"'"
+               }else{
+                   insert+="'"+arr[x]+"',";
+               }
+           }
+
             }
              insert+=');'
             console.log(insert)
+        })
+        db.transaction(function(tx){
+            tx.executeSql(insert,function (tx, results) { });
         }
-        )
-        console.log("FIN INSERTAR")
-    }
+    )}
     function longitud(x){
         var cont = 0
         for(var i in x){
@@ -57,7 +56,6 @@ function actualizar(tabla,arr,id){ //Funcion actualizar datos
     console.log("ACTUALIZANDO ...")
     openDB();
     console.log(tabla)
-
     db.transaction(function(tx){
         var  r = tx.executeSql('SELECT name, sql FROM sqlite_master WHERE type="table" AND name = "'+tabla+'";', [], function (tx, results) { });
         var b = r.rows.item(0).sql.replace(/^[^\(]+\(([^\)]+)\)/g, '$1').split(',')
@@ -97,7 +95,7 @@ function actualizar(tabla,arr,id){ //Funcion actualizar datos
     console.log("FIN CONSULTA")
 }
 
-/////////////////////////////////////////////Borrar/////////////////////////////////////////////////////////////////////////////////////////////
+
 
 function borrar(tabla, id){
     console.log("ELIMINANDO...")
@@ -127,5 +125,5 @@ function longitud(x){
 }
 
 
-///////////////////////////////////////Fin borrar/////////////////////////////////////////////////////////////////////////////////////////////
+
 
